@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jane Doe — Environmental Economics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Light theme — warm paper, environmental greens */
+    --paper: #faf8f3;
+    --paper-tint: #f3f0e6;
+    --ink: #1a2419;
+    --ink-soft: #3a4a3a;
+    --muted: #6b7a6b;
+    --rule: #e3e0d6;
+    --rule-soft: #ecead9;
+
+    --moss: #2d6a4f;          /* primary */
+    --moss-deep: #1b4332;     /* hover/strong */
+    --moss-mid: #74c69d;      /* accent mid */
+    --moss-wash: #d8f3dc;     /* light wash */
+    --moss-paper: #eef6ee;    /* very light card bg */
+
+    --max-w: 760px;
+    --nav-h: 56px;
+
+    --shadow-sm: 0 1px 2px rgba(28, 50, 28, 0.04), 0 0 0 1px rgba(28, 50, 28, 0.04);
+    --shadow-md: 0 4px 20px rgba(28, 50, 28, 0.06), 0 0 0 1px rgba(28, 50, 28, 0.05);
+  }
+
+  html[data-theme="dark"] {
+    /* Night theme — Zhang Daqian, Panorama of Mount Lu (1981–83) */
+    --paper: #1a3a4a;            /* deep azurite */
+    --paper-tint: #16323f;
+    --ink: #e0d8c0;              /* mist cream */
+    --ink-soft: #cdc4a8;
+    --muted: #8a9a90;            /* fog grey-green */
+    --rule: rgba(224, 216, 192, 0.12);
+    --rule-soft: rgba(224, 216, 192, 0.07);
+
+    --moss: #3a8a6a;             /* jade splash */
+    --moss-deep: #2a6a5a;        /* malachite */
+    --moss-mid: #4d9d7a;
+    --moss-wash: rgba(42, 106, 90, 0.18);
+    --moss-paper: rgba(42, 106, 90, 0.10);
+
+    --gold: #c8b878;             /* gold highlight */
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.35), 0 0 0 1px rgba(224, 216, 192, 0.06);
+    --shadow-md: 0 4px 22px rgba(0,0,0,0.4), 0 0 0 1px rgba(224, 216, 192, 0.07);
+  }
+
+  /* Day-mode dividers visible by default; night dividers hidden */
+  .divider-night { display: none; }
+  html[data-theme="dark"] .divider-day { display: none; }
+  html[data-theme="dark"] .divider-night { display: block; }
+
+  /* Active nav underline gets gold highlight in night mode */
+  html[data-theme="dark"] .nav-links a.active { color: var(--gold); }
+  html[data-theme="dark"] .nav-links a.active::after { background: var(--gold); }
+
+  /* Highlight under bio strong → gold in night mode */
+  html[data-theme="dark"] .hero-text .bio strong {
+    background: linear-gradient(to top, rgba(200, 184, 120, 0.22) 30%, transparent 30%);
+    color: var(--ink);
+  }
+
+  /* JMP headline stat in gold for emphasis */
+  html[data-theme="dark"] .jmp-finding .stat { color: var(--gold); }
+  html[data-theme="dark"] .jmp-eyebrow { color: var(--moss-mid); }
+
+  /* Timeline: current dot ring uses gold halo in night */
+  html[data-theme="dark"] .timeline-item:first-child .timeline-dot {
+    background: var(--gold);
+    box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px rgba(200, 184, 120, 0.25);
+  }
+  html[data-theme="dark"] .timeline-dot { box-shadow: 0 0 0 3px var(--paper); }
+
+  /* CV button uses jade with mist-cream text in night */
+  html[data-theme="dark"] .cv-button {
+    background: var(--moss);
+    color: var(--ink);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  html[data-theme="dark"] .cv-button:hover {
+    background: var(--moss-deep);
+  }
+
+  /* Pill links in night: jade border, jade-fill on hover with mist-cream text */
+  html[data-theme="dark"] .paper-links a:hover { color: var(--ink); }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 1.5rem);
+  }
+
+  body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 0.95rem;
+    padding-top: var(--nav-h);
+    transition: background 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection { background: var(--moss-wash); color: var(--moss-deep); }
+
+  /* ── Sticky nav ── */
+  .sticky-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    border-bottom: 1px solid var(--rule);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .nav-inner {
+    max-width: var(--max-w);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  .nav-monogram {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0.4rem 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .nav-monogram em {
+    color: var(--moss);
+    font-style: normal;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+  }
+
+  .nav-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.42rem 0.7rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+    transition: color 0.2s, background 0.2s;
+    position: relative;
+  }
+
+  .nav-links a:hover {
+    color: var(--moss);
+    background: var(--moss-paper);
+  }
+
+  .nav-links a.active {
+    color: var(--moss-deep);
+  }
+
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 2px;
+    background: var(--moss);
+    border-radius: 2px;
+  }
+
+  .nav-links svg {
+    width: 15px; height: 15px;
+    stroke: currentColor; stroke-width: 1.7;
+    fill: none; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover {
+    color: var(--moss);
+    border-color: var(--moss-mid);
+    background: var(--moss-paper);
+  }
+
+  .theme-toggle svg {
+    width: 14px; height: 14px;
+    stroke: currentColor; stroke-width: 1.8;
+    fill: none; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .theme-toggle .icon-sun { display: none; }
+  html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+  html[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
+  /* ── Hero ── */
+  .hero {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 2rem;
+    display: flex;
+    gap: 2.2rem;
+    align-items: flex-start;
+  }
+
+  .avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .avatar {
+    width: 128px; height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    border: 3px solid var(--paper);
+    box-shadow: var(--shadow-md);
+  }
+
+  .avatar-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px dashed var(--moss-mid);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .hero-text { flex: 1; min-width: 0; }
+
+  .hero-text h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 2.1rem;
+    letter-spacing: -0.022em;
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-text .subtitle {
+    color: var(--moss);
+    font-size: 0.88rem;
+    font-weight: 500;
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.005em;
+  }
+
+  .hero-text .subtitle .dot {
+    display: inline-block;
+    width: 3px; height: 3px;
+    background: var(--moss-mid);
+    border-radius: 50%;
+    margin: 0 0.45rem;
+    vertical-align: middle;
+  }
+
+  .hero-text .bio {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    text-wrap: pretty;
+  }
+
+  .hero-text .bio strong {
+    color: var(--ink);
+    font-weight: 500;
+    background: linear-gradient(to top, var(--moss-wash) 30%, transparent 30%);
+    padding: 0 2px;
+  }
+
+  .social-row {
+    display: flex;
+    gap: 0.3rem;
+    margin-top: 1rem;
+    align-items: center;
+  }
+
+  .social-row a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 6px;
+    color: var(--muted);
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .social-row a:hover {
+    color: var(--moss);
+    background: var(--moss-paper);
+  }
+  .social-row svg {
+    width: 16px; height: 16px;
+    stroke: currentColor; stroke-width: 1.7;
+    fill: none; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* ── News strip ── */
+  .news {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0.5rem 1.5rem 1rem;
+  }
+
+  .news-inner {
+    border-left: 2px solid var(--moss-mid);
+    padding: 0.4rem 0 0.4rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .news-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    font-size: 0.83rem;
+    color: var(--ink-soft);
+  }
+
+  .news-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    flex-shrink: 0;
+    width: 64px;
+    letter-spacing: -0.01em;
+  }
+
+  .news-item a {
+    color: var(--moss);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .news-item a:hover { border-color: var(--moss); }
+
+  /* ── Dividers ── */
+  .divider {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    line-height: 0;
+  }
+  .divider svg { width: 100%; height: auto; display: block; }
+
+  html[data-theme="dark"] .divider svg .hill-1 { fill: #2a6a5a; opacity: 0.55; }
+  html[data-theme="dark"] .divider svg .hill-2 { fill: #1f4a44; opacity: 0.7; }
+  html[data-theme="dark"] .divider svg .hill-3 { fill: #16323f; opacity: 0.9; }
+  html[data-theme="dark"] .divider svg .sun { fill: #c8b878; opacity: 0.55; }
+
+  /* Shan shui mountain dividers — used only in night mode */
+  .divider-night svg .peak-far    { fill: #3a8a6a; opacity: 0.22; }
+  .divider-night svg .peak-mid    { fill: #2a6a5a; opacity: 0.5; }
+  .divider-night svg .peak-near   { fill: #1a3a4a; opacity: 0.95; }
+  .divider-night svg .moon        { fill: #c8b878; opacity: 0.7; }
+  .divider-night svg .moon-glow   { fill: #c8b878; opacity: 0.15; }
+  .divider-night svg .mist        { fill: #e0d8c0; opacity: 0.06; }
+
+  /* ── Sections ── */
+  section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 2.75rem 1.5rem;
+  }
+
+  .section-title {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.015em;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--ink);
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--rule), transparent);
+  }
+
+  .section-title .icon-wrap {
+    width: 30px; height: 30px;
+    border-radius: 7px;
+    background: var(--moss-paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-title svg {
+    width: 16px; height: 16px;
+    stroke: var(--moss);
+    stroke-width: 1.8;
+    fill: none; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* ── JMP card (the main event) ── */
+  .jmp-section {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .jmp-card {
+    background: var(--moss-paper);
+    border: 1px solid var(--moss-wash);
+    border-left: 3px solid var(--moss);
+    border-radius: 10px;
+    padding: 1.6rem 1.7rem;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+  }
+
+  html[data-theme="dark"] .jmp-card {
+    background: var(--moss-paper);
+    border-color: var(--moss-wash);
+    border-left-color: var(--moss);
+  }
+
+  .jmp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--moss-deep);
+    margin-bottom: 0.7rem;
+  }
+
+  html[data-theme="dark"] .jmp-eyebrow { color: var(--moss); }
+
+  .jmp-eyebrow .pulse {
+    width: 6px; height: 6px;
+    background: var(--moss);
+    border-radius: 50%;
+    position: relative;
+  }
+  .jmp-eyebrow .pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--moss);
+    border-radius: 50%;
+    animation: pulse 2.4s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(2.6); opacity: 0; }
+  }
+
+  .jmp-title {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.25;
+    letter-spacing: -0.018em;
+    margin-bottom: 0.4rem;
+    text-wrap: balance;
+  }
+
+  .jmp-title a {
+    color: var(--ink);
+    text-decoration: none;
+    background-image: linear-gradient(to right, var(--moss), var(--moss));
+    background-size: 0% 1.5px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease;
+  }
+  .jmp-title a:hover { background-size: 100% 1.5px; }
+
+  .jmp-meta {
+    color: var(--muted);
+    font-size: 0.83rem;
+    margin-bottom: 0.85rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.01em;
+  }
+
+  .jmp-abstract {
+    font-size: 0.93rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    text-wrap: pretty;
+    margin-bottom: 1rem;
+  }
+
+  .jmp-finding {
+    background: var(--paper);
+    border-radius: 6px;
+    padding: 0.7rem 0.95rem;
+    margin-bottom: 1rem;
+    font-size: 0.87rem;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .jmp-finding .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--moss);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+  }
+
+  .jmp-finding .stat {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    color: var(--moss-deep);
+    font-size: 1.05em;
+  }
+
+  /* (gold override defined earlier in dark theme block) */
+
+  /* ── Paper entries ── */
+  .paper {
+    margin-bottom: 1.6rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .paper:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .paper-title {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 1.08rem;
+    line-height: 1.35;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+  }
+
+  .paper-title a {
+    color: var(--ink);
+    text-decoration: none;
+    background-image: linear-gradient(to right, var(--moss), var(--moss));
+    background-size: 0% 1.5px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease;
+  }
+  .paper-title a:hover { background-size: 100% 1.5px; }
+
+  .paper-meta {
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.01em;
+  }
+
+  .paper-meta .status {
+    color: var(--moss);
+    font-weight: 500;
+  }
+
+  .paper-abstract {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+
+  .paper-links {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.7rem;
+    flex-wrap: wrap;
+  }
+
+  .paper-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--moss);
+    text-decoration: none;
+    padding: 0.25rem 0.65rem;
+    border: 1px solid var(--moss-mid);
+    border-radius: 999px;
+    background: transparent;
+    transition: all 0.2s;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.01em;
+  }
+  .paper-links a:hover {
+    background: var(--moss);
+    color: white;
+    border-color: var(--moss);
+    transform: translateY(-1px);
+  }
+
+  html[data-theme="dark"] .paper-links a:hover {
+    color: var(--paper);
+  }
+
+  .paper-links a svg {
+    width: 11px; height: 11px;
+    stroke: currentColor; stroke-width: 2;
+    fill: none; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* ── Teaching ── */
+  .course {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.7rem 0;
+    border-bottom: 1px dashed var(--rule);
+    gap: 1rem;
+  }
+  .course:last-child { border-bottom: none; }
+
+  .course-name {
+    font-weight: 500;
+    font-size: 0.93rem;
+    color: var(--ink);
+  }
+
+  .course-name .code {
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 400;
+    margin-left: 0.4rem;
+  }
+
+  .course-role {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  /* ── Education timeline ── */
+  .timeline {
+    position: relative;
+    padding-left: 0.5rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--rule);
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 1.3rem;
+    align-items: flex-start;
+    position: relative;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+
+  .timeline-dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--moss-mid);
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px var(--paper);
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-item:first-child .timeline-dot {
+    background: var(--moss);
+    box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px var(--moss-wash);
+  }
+
+  .timeline-content { flex: 1; }
+
+  .timeline-content h4 {
+    font-weight: 500;
+    font-size: 0.96rem;
+    margin-bottom: 0.1rem;
+    color: var(--ink);
+  }
+
+  .timeline-content .where {
+    color: var(--ink-soft);
+    font-size: 0.86rem;
+  }
+
+  .timeline-content .when {
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 0.15rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── CV section ── */
+  .cv-section {
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .cv-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.8rem 1.6rem;
+    background: var(--moss);
+    color: var(--paper);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.005em;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(45, 106, 79, 0.15);
+  }
+
+  .cv-button:hover {
+    background: var(--moss-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(45, 106, 79, 0.22);
+  }
+
+  html[data-theme="dark"] .cv-button {
+    background: var(--moss);
+    color: #0d1410;
+  }
+  html[data-theme="dark"] .cv-button:hover {
+    background: var(--moss-deep);
+  }
+
+  .cv-button svg {
+    width: 15px; height: 15px;
+    stroke: currentColor; stroke-width: 2;
+    fill: none; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .cv-meta {
+    margin-top: 0.7rem;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── Footer ── */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    text-align: center;
+    padding: 2rem 1.5rem 3rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--rule);
+    margin-top: 1rem;
+  }
+
+  footer a {
+    color: var(--moss);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  footer a:hover { text-decoration: underline; }
+
+  footer .footer-meta {
+    margin-top: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    opacity: 0.7;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .hero {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.4rem;
+      padding-top: 2rem;
+    }
+    .avatar { width: 96px; height: 96px; }
+    .hero-text h1 { font-size: 1.75rem; }
+    .nav-links span { display: none; }
+    .nav-links a { padding: 0.45rem; }
+    .nav-links svg { width: 17px; height: 17px; }
+    .nav-monogram { font-size: 0.92rem; }
+    .jmp-card { padding: 1.3rem 1.2rem; }
+    .jmp-title { font-size: 1.18rem; }
+    .news-date { width: 56px; font-size: 0.68rem; }
+    .course { flex-direction: column; gap: 0.15rem; align-items: flex-start; }
+    .course-role { text-align: left; }
+    section { padding: 2rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sticky nav -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <a href="#about" class="nav-monogram">Jane <em>Doe</em></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#jmp" data-target="jmp">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>JMP</span>
+      </a>
+      <a href="#research" data-target="research">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span>Research</span>
+      </a>
+      <a href="#teaching" data-target="teaching">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <span>Teaching</span>
+      </a>
+      <a href="#education" data-target="education">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
+        <span>Education</span>
+      </a>
+      <a href="#cv" data-target="cv">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>CV</span>
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="about">
+  <div class="avatar-wrap">
+    <div class="avatar-ring"></div>
+    <img class="avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face" alt="Jane Doe">
+  </div>
+  <div class="hero-text">
+    <h1>Jane Doe</h1>
+    <div class="subtitle">PhD Candidate<span class="dot"></span>Economics<span class="dot"></span>Harvard University</div>
+    <p class="bio">I study how <strong>environmental regulation</strong> shapes firm behavior in developing countries, using quasi-experimental methods and satellite data. My job market paper examines pollution displacement across borders in South Asia.</p>
+    <div class="social-row">
+      <a href="/cdn-cgi/l/email-protection#93f9f2fdf6bdf7fcf6d3f5f2e0bdfbf2e1e5f2e1f7bdf6f7e6" aria-label="Email">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+      </a>
+      <a href="#" aria-label="Google Scholar">
+        <svg viewBox="0 0 24 24"><path d="M12 2L1 9l11 7 11-7-11-7z"/><path d="M5 12.5V17a7 7 0 0014 0v-4.5"/></svg>
+      </a>
+      <a href="#" aria-label="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+      </a>
+      <a href="#" aria-label="ORCID">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 8v8M8 6.5v.01M11 9h3a3 3 0 010 6h-3V9z"/></svg>
+      </a>
+      <a href="#" aria-label="Twitter">
+        <svg viewBox="0 0 24 24"><path d="M4 4l7.5 10.5L4.5 20H7l5.5-5L17 20h3l-7.7-10.8L19.5 4H17l-5 4.7L8 4H4z" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- News strip -->
+<div class="news">
+  <div class="news-inner">
+    <div class="news-item">
+      <span class="news-date">Apr 2026</span>
+      <span>On the <a href="#">2026 economics job market</a> — interviews at ASSA in January.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Mar 2026</span>
+      <span>Presenting JMP at NBER EEE Spring Meeting.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Jan 2026</span>
+      <span>Awarded EPA STAR Graduate Fellowship.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Divider — layered hills with sun (day) -->
+<div class="divider divider-day" aria-hidden="true">
+  <svg viewBox="0 0 900 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <circle class="sun" cx="720" cy="32" r="14" fill="#74c69d" opacity="0.35"/>
+    <path class="hill-1" d="M0,55 C80,38 160,58 260,42 C360,28 440,55 540,38 C640,22 740,48 830,38 C870,33 890,40 900,38 L900,80 L0,80Z" fill="#d8f3dc" opacity="0.9"/>
+    <path class="hill-2" d="M0,62 C100,48 220,68 340,52 C460,38 560,62 680,50 C780,40 850,55 900,50 L900,80 L0,80Z" fill="#74c69d" opacity="0.45"/>
+    <path class="hill-3" d="M0,72 C150,62 320,76 480,66 C620,58 760,72 900,66 L900,80 L0,80Z" fill="#2d6a4f" opacity="0.25"/>
+  </svg>
+</div>
+<!-- Divider — shan shui peaks with moon (night) -->
+<div class="divider divider-night" aria-hidden="true">
+  <svg viewBox="0 0 900 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <circle class="moon-glow" cx="710" cy="22" r="22"/>
+    <path id="moonShape" class="moon" d="M 710 13 A 9 9 0 1 0 710 31 A 7 9 0 1 1 710 13 Z">
+      <title>Moon phase</title>
+    </path>
+    <!-- far peaks: tall, asymmetric, jade -->
+    <path class="peak-far" d="M0,60 L90,32 L150,52 L240,18 L320,46 L410,24 L500,50 L580,30 L660,48 L740,36 L820,44 L900,30 L900,80 L0,80Z"/>
+    <!-- mid peaks: malachite, sharper, with mist gaps via opacity -->
+    <path class="peak-mid" d="M0,72 L60,48 L130,68 L210,42 L300,64 L370,38 L460,62 L560,46 L640,66 L730,52 L820,68 L900,52 L900,80 L0,80Z"/>
+    <!-- mist band -->
+    <rect class="mist" x="0" y="58" width="900" height="6"/>
+    <rect class="mist" x="0" y="68" width="900" height="3"/>
+    <!-- near peaks: deepest, foreground, azurite -->
+    <path class="peak-near" d="M0,80 L0,74 L80,66 L150,76 L230,60 L310,74 L390,58 L470,72 L560,62 L640,76 L720,64 L810,74 L900,66 L900,80 Z"/>
+  </svg>
+</div>
+
+<!-- Job Market Paper — the main event -->
+<section id="jmp" class="jmp-section">
+  <h2 class="section-title">
+    <span class="icon-wrap">
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </span>
+    Job Market Paper
+  </h2>
+
+  <article class="jmp-card">
+    <div class="jmp-eyebrow"><span class="pulse"></span> On the market · 2026</div>
+    <h3 class="jmp-title">
+      <a href="#">Pollution Without Borders: Regulatory Displacement in South Asian Manufacturing</a>
+    </h3>
+    <div class="jmp-meta">Sole-authored · Draft November 2025</div>
+    <p class="jmp-abstract">When environmental standards tighten in one jurisdiction, polluting activity often relocates rather than disappears. Using a panel of 240 industrial districts across India and Bangladesh and a regression-discontinuity design around the 2018 Indian Air Quality Standards revision, I show that emissions-intensive firms — particularly brick kilns and textile dyeing operations — systematically reorganize across the border in response to enforcement.</p>
+    <div class="jmp-finding">
+      <span class="label">Headline</span>
+      <span>Tightening Indian standards causes a <span class="stat">+12.4%</span> increase in PM2.5 in adjacent Bangladeshi districts within 18 months, fully offsetting the domestic improvement at the regional level.</span>
+    </div>
+    <div class="paper-links">
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+      <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg>Slides</a>
+      <a href="#"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>Data &amp; Code</a>
+      <a href="#"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Pre-registration</a>
+    </div>
+  </article>
+</section>
+
+<!-- Divider — gentler hills (day) -->
+<div class="divider divider-day" aria-hidden="true">
+  <svg viewBox="0 0 900 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="hill-1" d="M0,25 C150,12 300,30 450,18 C600,8 750,24 900,16 L900,40 L0,40Z" fill="#d8f3dc" opacity="0.7"/>
+    <path class="hill-2" d="M0,32 C200,22 400,34 600,24 C750,18 850,28 900,26 L900,40 L0,40Z" fill="#74c69d" opacity="0.3"/>
+  </svg>
+</div>
+<!-- Divider — shan shui mid peaks (night) -->
+<div class="divider divider-night" aria-hidden="true">
+  <svg viewBox="0 0 900 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="peak-far" d="M0,30 L70,18 L140,28 L220,10 L300,24 L380,14 L470,26 L560,16 L640,28 L730,18 L820,26 L900,16 L900,40 L0,40Z"/>
+    <path class="peak-mid" d="M0,36 L60,26 L130,34 L210,22 L300,32 L370,20 L460,30 L560,24 L650,34 L740,26 L820,32 L900,26 L900,40 L0,40Z"/>
+    <rect class="mist" x="0" y="30" width="900" height="3"/>
+  </svg>
+</div>
+
+<!-- Other Research -->
+<section id="research">
+  <h2 class="section-title">
+    <span class="icon-wrap">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    </span>
+    Other Research
+  </h2>
+
+  <div class="paper">
+    <div class="paper-title"><a href="#">Satellite Monitoring and Firm Compliance: Evidence from a Randomized Disclosure Policy</a></div>
+    <div class="paper-meta">with A. Kumar · <span class="status">R&amp;R, AEJ: Applied</span> · 2024</div>
+    <p class="paper-abstract">We randomize whether firms are informed that their emissions are being tracked via satellite. Treated firms reduce visible pollution by 18% but shift toward less detectable pollutants — suggesting monitoring technologies create predictable evasion margins.</p>
+    <div class="paper-links">
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+      <a href="#"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Pre-registration</a>
+    </div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-title"><a href="#">Groundwater Depletion and Agricultural Adaptation in the Indo-Gangetic Plain</a></div>
+    <div class="paper-meta">with B. Singh and C. Patel · Working Paper · 2023</div>
+    <p class="paper-abstract">Combining GRACE satellite measurements with household panel data, we estimate the elasticity of cropping decisions with respect to local water availability and find heterogeneous adaptation by tenure status.</p>
+    <div class="paper-links">
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>
+    </div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-title"><a href="#">The Distributional Costs of Carbon Border Adjustments</a></div>
+    <div class="paper-meta">Work in progress · 2025</div>
+    <p class="paper-abstract">A structural model of trade and emissions to evaluate the welfare incidence of CBAM-style policies on low-income exporters.</p>
+    <div class="paper-links">
+      <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg>Slides</a>
+    </div>
+  </div>
+</section>
+
+<!-- Divider — small ripple (day) -->
+<div class="divider divider-day" aria-hidden="true">
+  <svg viewBox="0 0 900 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="hill-1" d="M0,18 C200,8 400,22 600,12 C750,6 850,16 900,14 L900,30 L0,30Z" fill="#d8f3dc" opacity="0.6"/>
+  </svg>
+</div>
+<!-- Divider — distant ridge (night) -->
+<div class="divider divider-night" aria-hidden="true">
+  <svg viewBox="0 0 900 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="peak-far" d="M0,22 L80,12 L160,20 L260,8 L350,18 L440,10 L530,20 L620,12 L710,22 L790,14 L900,18 L900,30 L0,30Z"/>
+    <path class="peak-mid" d="M0,26 L100,18 L200,24 L320,14 L420,22 L520,16 L630,24 L740,18 L840,24 L900,20 L900,30 L0,30Z"/>
+  </svg>
+</div>
+
+<!-- Teaching -->
+<section id="teaching">
+  <h2 class="section-title">
+    <span class="icon-wrap">
+      <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    </span>
+    Teaching
+  </h2>
+
+  <div class="course">
+    <span class="course-name">Environmental Economics<span class="code">Econ 1661</span></span>
+    <span class="course-role">Teaching Fellow · Spring 2025</span>
+  </div>
+  <div class="course">
+    <span class="course-name">Econometrics<span class="code">Econ 1126</span></span>
+    <span class="course-role">Teaching Fellow · Fall 2024</span>
+  </div>
+  <div class="course">
+    <span class="course-name">Principles of Economics<span class="code">Ec 10</span></span>
+    <span class="course-role">Teaching Fellow · 2023 – 2024</span>
+  </div>
+</section>
+
+<!-- Divider — tiny (day) -->
+<div class="divider divider-day" aria-hidden="true">
+  <svg viewBox="0 0 900 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="hill-1" d="M0,14 C150,6 300,18 450,10 C600,4 750,14 900,10 L900,24 L0,24Z" fill="#d8f3dc" opacity="0.5"/>
+  </svg>
+</div>
+<!-- Divider — thin ridge (night) -->
+<div class="divider divider-night" aria-hidden="true">
+  <svg viewBox="0 0 900 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="peak-far" d="M0,16 L100,8 L200,14 L320,4 L430,12 L540,6 L660,14 L780,8 L900,12 L900,24 L0,24Z"/>
+    <path class="peak-mid" d="M0,20 L120,14 L260,18 L400,10 L540,16 L680,12 L820,18 L900,14 L900,24 L0,24Z"/>
+  </svg>
+</div>
+
+<!-- Education -->
+<section id="education">
+  <h2 class="section-title">
+    <span class="icon-wrap">
+      <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
+    </span>
+    Education
+  </h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h4>PhD in Economics</h4>
+        <div class="where">Harvard University · Advisors: M. Greenstone, R. Hanna</div>
+        <div class="when">2021 — present</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h4>MPhil in Economics</h4>
+        <div class="where">University of Oxford · Distinction</div>
+        <div class="when">2019 — 2021</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h4>BA in Economics &amp; Mathematics</h4>
+        <div class="where">Swarthmore College · High Honors</div>
+        <div class="when">2015 — 2019</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv" class="cv-section">
+  <a href="#" class="cv-button">
+    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download CV
+  </a>
+  <div class="cv-meta">PDF · Updated November 2025</div>
+</section>
+
+<footer>
+  <div><a href="/cdn-cgi/l/email-protection#3359525d561d575c56735552401d5b5241455241571d565746"><span class="__cf_email__" data-cfemail="076d6669622963686247616674296f66757166756329626372">[email&#160;protected]</span></a></div>
+  <div class="footer-meta">Littauer Center · 1805 Cambridge St · Cambridge, MA 02138</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Theme toggle with persistence
+  (function () {
+    const root = document.documentElement;
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial = stored || (prefersDark ? 'dark' : 'light');
+    root.setAttribute('data-theme', initial);
+
+    const btn = document.getElementById('themeToggle');
+    btn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  })();
+
+  // Moon phase — drives the SVG crescent in the first night-mode divider
+  (function () {
+    const shape = document.getElementById('moonShape');
+    if (!shape) return;
+
+    const CX = 710, CY = 22, R = 9;
+    const SYNODIC_MS = 29.530588853 * 86400000;
+    // Reference new moon: 2000-01-06 18:14 UTC
+    const REF_NEW = Date.UTC(2000, 0, 6, 18, 14);
+
+    function phaseFraction(date) {
+      const elapsed = (date.getTime() - REF_NEW) % SYNODIC_MS;
+      return (elapsed < 0 ? elapsed + SYNODIC_MS : elapsed) / SYNODIC_MS;
+    }
+
+    function moonPath(p) {
+      // p: 0–1, where 0 = new, 0.5 = full
+      const angle = p * 2 * Math.PI;
+      const cosA = Math.cos(angle);
+      const rx = R * Math.abs(cosA);
+      const waxing = p < 0.5;
+      const gibbous = cosA < 0;
+      const outerSweep = waxing ? 1 : 0;
+      const termSweep = waxing ? (gibbous ? 1 : 0) : (gibbous ? 0 : 1);
+      return `M ${CX} ${CY - R} A ${R} ${R} 0 0 ${outerSweep} ${CX} ${CY + R} A ${rx.toFixed(2)} ${R} 0 0 ${termSweep} ${CX} ${CY - R} Z`;
+    }
+
+    function phaseName(p) {
+      // 8-phase classification with ±~1.85% bands around the cardinal points
+      if (p < 0.02 || p >= 0.98) return 'New Moon';
+      if (p < 0.23) return 'Waxing Crescent';
+      if (p < 0.27) return 'First Quarter';
+      if (p < 0.48) return 'Waxing Gibbous';
+      if (p < 0.52) return 'Full Moon';
+      if (p < 0.73) return 'Waning Gibbous';
+      if (p < 0.77) return 'Last Quarter';
+      return 'Waning Crescent';
+    }
+
+    function update() {
+      const now = new Date();
+      const p = phaseFraction(now);
+      shape.setAttribute('d', moonPath(p));
+      const age = (p * 29.530588853).toFixed(1);
+      const illum = Math.round((1 - Math.cos(p * 2 * Math.PI)) / 2 * 100);
+      const title = shape.querySelector('title');
+      if (title) title.textContent = `${phaseName(p)} · ${illum}% illuminated · age ${age}d`;
+    }
+
+    update();
+    // Re-check hourly in case the page sits open across a phase boundary
+    setInterval(update, 60 * 60 * 1000);
+  })();
+
+  // Active section highlighting in nav
+  (function () {
+    const links = document.querySelectorAll('.nav-links a[data-target]');
+    const sections = Array.from(links)
+      .map(l => document.getElementById(l.dataset.target))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.toggle('active', l.dataset.target === entry.target.id));
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(s => observer.observe(s));
+  })();
+</script>
+
+</body>
+</html>

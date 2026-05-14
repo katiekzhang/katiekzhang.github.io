@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ============================================================
+       SEO & social meta — UPDATE these when you change your bio
+       ============================================================ -->
+  <title>Katie Zhang — Environmental Economics</title>
+  <meta name="description" content="PhD candidate in Economics at [Your University], studying environmental regulation and firm behavior in developing countries.">
+  <meta property="og:title"       content="Katie Zhang — Environmental Economics">
+  <meta property="og:description" content="PhD candidate studying environmental regulation, satellite data, and quasi-experimental methods.">
+  <meta property="og:image"       content="https://katiezhang.org/img/og-image.jpg">
+  <meta property="og:url"         content="https://katiezhang.org">
+  <meta property="og:type"        content="website">
+  <meta name="twitter:card"       content="summary_large_image">
+
+  <!-- Favicon — a small SVG leaf monogram; replace with a real .ico if you prefer -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232d6a4f'/><text y='.9em' x='50%' text-anchor='middle' font-size='62' font-family='Georgia,serif' fill='%23faf8f3'>K</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Theme init — runs synchronously to prevent flash of wrong theme -->
+  <script>
+    (function () {
+      var stored      = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', stored || (prefersDark ? 'dark' : 'light'));
+    })();
+  </script>
+</head>
+<body>
+
+<!-- ── Sticky navigation ── -->
+<nav class="sticky-nav" aria-label="Site navigation">
+  <div class="nav-inner">
+    <!-- UPDATE: change "Katie Zhang" to your name -->
+    <a href="#about" class="nav-monogram">Katie <em>Zhang</em></a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#jmp"       data-target="jmp">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>JMP</span>
+      </a>
+      <a href="#research"  data-target="research">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span>Research</span>
+      </a>
+      <a href="#teaching"  data-target="teaching">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <span>Teaching</span>
+      </a>
+      <a href="#education" data-target="education">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
+        <span>Education</span>
+      </a>
+      <a href="#cv"        data-target="cv">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>CV</span>
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg class="icon-sun"  viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── Hero / About ── -->
+  <!-- ============================================================
+       ABOUT — update name, title, bio, and social links
+       ============================================================ -->
+  <header class="hero" id="about">
+    <div class="avatar-wrap">
+      <div class="avatar-ring" aria-hidden="true"></div>
+      <!-- UPDATE: replace img/headshot.jpg with your photo -->
+      <img class="avatar"
+           src="img/headshot.jpg"
+           alt="Katie Zhang"
+           width="128" height="128"
+           loading="eager">
+    </div>
+    <div class="hero-text">
+      <!-- UPDATE: your name -->
+      <h1>Katie Zhang</h1>
+      <!-- UPDATE: your title, department, institution -->
+      <div class="subtitle">
+        PhD Candidate<span class="dot"></span>Economics<span class="dot"></span>[Your University]
+      </div>
+      <!-- UPDATE: your bio. Wrap key phrases in <strong> for the highlight effect. -->
+      <p class="bio">
+        I study how <strong>environmental regulation</strong> shapes firm behavior in developing
+        countries, using quasi-experimental methods and satellite data. My job market paper
+        examines pollution displacement across borders in South Asia.
+      </p>
+      <!-- UPDATE: social links. Remove any you don't use. -->
+      <div class="social-row">
+        <!-- Email: replace your@email.edu -->
+        <a href="mailto:your@email.edu" aria-label="Email">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+        </a>
+        <!-- Google Scholar: replace # with your profile URL -->
+        <a href="#" aria-label="Google Scholar">
+          <svg viewBox="0 0 24 24"><path d="M12 2L1 9l11 7 11-7-11-7z"/><path d="M5 12.5V17a7 7 0 0014 0v-4.5"/></svg>
+        </a>
+        <!-- GitHub: replace # with your profile URL -->
+        <a href="#" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        </a>
+        <!-- ORCID: replace # with your ORCID URL -->
+        <a href="#" aria-label="ORCID">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 8v8M8 6.5v.01M11 9h3a3 3 0 010 6h-3V9z"/></svg>
+        </a>
+        <!-- Twitter/X: replace # with your profile URL. Remove if unused. -->
+        <a href="#" aria-label="Twitter / X">
+          <svg viewBox="0 0 24 24"><path d="M4 4l7.5 10.5L4.5 20H7l5.5-5L17 20h3l-7.7-10.8L19.5 4H17l-5 4.7L8 4H4z" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       NEWS — add/remove .news-item rows as needed
+       ============================================================ -->
+  <!-- NEWS START -->
+  <div class="news" aria-label="Recent news">
+    <div class="news-inner">
+      <div class="news-item">
+        <span class="news-date">Apr 2026</span>
+        <span>On the <a href="#">2026 economics job market</a> — interviews at ASSA in January.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Mar 2026</span>
+        <span>Presenting JMP at NBER EEE Spring Meeting.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Jan 2026</span>
+        <span>Awarded EPA STAR Graduate Fellowship.</span>
+      </div>
+    </div>
+  </div>
+  <!-- NEWS END -->
+
+  <!-- Divider — layered hills with sun (light mode) -->
+  <div class="divider divider-day" aria-hidden="true">
+    <svg viewBox="0 0 900 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <circle class="sun"    cx="720" cy="32" r="14" fill="#74c69d" opacity=".35"/>
+      <path   class="hill-1" d="M0,55 C80,38 160,58 260,42 C360,28 440,55 540,38 C640,22 740,48 830,38 C870,33 890,40 900,38 L900,80 L0,80Z" fill="#d8f3dc" opacity=".9"/>
+      <path   class="hill-2" d="M0,62 C100,48 220,68 340,52 C460,38 560,62 680,50 C780,40 850,55 900,50 L900,80 L0,80Z"                          fill="#74c69d" opacity=".45"/>
+      <path   class="hill-3" d="M0,72 C150,62 320,76 480,66 C620,58 760,72 900,66 L900,80 L0,80Z"                                                 fill="#2d6a4f" opacity=".25"/>
+    </svg>
+  </div>
+  <!-- Divider — shan shui peaks with moon (dark mode) -->
+  <div class="divider divider-night" aria-hidden="true">
+    <svg viewBox="0 0 900 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <circle class="moon-glow" cx="710" cy="22" r="22"/>
+      <path id="moonShape" class="moon" d="M 710 13 A 9 9 0 1 0 710 31 A 7 9 0 1 1 710 13 Z">
+        <title>Moon phase</title>
+      </path>
+      <path class="peak-far"  d="M0,60 L90,32 L150,52 L240,18 L320,46 L410,24 L500,50 L580,30 L660,48 L740,36 L820,44 L900,30 L900,80 L0,80Z"/>
+      <path class="peak-mid"  d="M0,72 L60,48 L130,68 L210,42 L300,64 L370,38 L460,62 L560,46 L640,66 L730,52 L820,68 L900,52 L900,80 L0,80Z"/>
+      <rect class="mist" x="0" y="58" width="900" height="6"/>
+      <rect class="mist" x="0" y="68" width="900" height="3"/>
+      <path class="peak-near" d="M0,80 L0,74 L80,66 L150,76 L230,60 L310,74 L390,58 L470,72 L560,62 L640,76 L720,64 L810,74 L900,66 L900,80 Z"/>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       JMP — update title, abstract, headline finding, and links
+       ============================================================ -->
+  <!-- JMP START -->
+  <section id="jmp" class="jmp-section">
+    <h2 class="section-title">
+      <span class="icon-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </span>
+      Job Market Paper
+    </h2>
+
+    <article class="jmp-card">
+      <!-- UPDATE: change year if needed -->
+      <div class="jmp-eyebrow"><span class="pulse" aria-hidden="true"></span> On the market · 2026</div>
+
+      <!-- UPDATE: paper title and link (replace # with PDF URL or SSRN) -->
+      <h3 class="jmp-title">
+        <a href="#">Pollution Without Borders: Regulatory Displacement in South Asian Manufacturing</a>
+      </h3>
+
+      <!-- UPDATE: authorship and draft date -->
+      <div class="jmp-meta">Sole-authored · Draft November 2025</div>
+
+      <!-- UPDATE: abstract -->
+      <p class="jmp-abstract">
+        When environmental standards tighten in one jurisdiction, polluting activity often relocates
+        rather than disappears. Using a panel of 240 industrial districts across India and Bangladesh
+        and a regression-discontinuity design around the 2018 Indian Air Quality Standards revision,
+        I show that emissions-intensive firms — particularly brick kilns and textile dyeing operations
+        — systematically reorganize across the border in response to enforcement.
+      </p>
+
+      <!-- UPDATE: headline finding. <span class="stat"> is the bold number. -->
+      <div class="jmp-finding">
+        <span class="label">Headline</span>
+        <span>Tightening Indian standards causes a <span class="stat">+12.4%</span> increase in PM2.5
+          in adjacent Bangladeshi districts within 18 months, fully offsetting the domestic
+          improvement at the regional level.</span>
+      </div>
+
+      <!-- UPDATE: replace # with actual URLs; remove links you don't have yet -->
+      <div class="paper-links">
+        <a href="#">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          PDF
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+          Slides
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          Data &amp; Code
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Pre-registration
+        </a>
+      </div>
+    </article>
+  </section>
+  <!-- JMP END -->
+
+  <!-- Divider — gentler hills (light mode) -->
+  <div class="divider divider-day" aria-hidden="true">
+    <svg viewBox="0 0 900 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="hill-1" d="M0,25 C150,12 300,30 450,18 C600,8 750,24 900,16 L900,40 L0,40Z"  fill="#d8f3dc" opacity=".7"/>
+      <path class="hill-2" d="M0,32 C200,22 400,34 600,24 C750,18 850,28 900,26 L900,40 L0,40Z" fill="#74c69d" opacity=".3"/>
+    </svg>
+  </div>
+  <!-- Divider — shan shui mid peaks (dark mode) -->
+  <div class="divider divider-night" aria-hidden="true">
+    <svg viewBox="0 0 900 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="peak-far" d="M0,30 L70,18 L140,28 L220,10 L300,24 L380,14 L470,26 L560,16 L640,28 L730,18 L820,26 L900,16 L900,40 L0,40Z"/>
+      <path class="peak-mid" d="M0,36 L60,26 L130,34 L210,22 L300,32 L370,20 L460,30 L560,24 L650,34 L740,26 L820,32 L900,26 L900,40 L0,40Z"/>
+      <rect class="mist" x="0" y="30" width="900" height="3"/>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       RESEARCH — add papers following the .paper template below.
+       To add a paper:
+         1. Copy one <div class="paper">…</div> block
+         2. Paste it before <!-- PAPERS END -->
+         3. Update title, meta, abstract, and links
+       ============================================================ -->
+  <section id="research">
+    <h2 class="section-title">
+      <span class="icon-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </span>
+      Other Research
+    </h2>
+
+    <!-- PAPERS START -->
+
+    <div class="paper">
+      <!-- UPDATE: paper title and link -->
+      <div class="paper-title">
+        <a href="#">Satellite Monitoring and Firm Compliance: Evidence from a Randomized Disclosure Policy</a>
+      </div>
+      <!-- UPDATE: coauthors, status, year.
+           Status options: "R&R, Journal", "Under Review", "Working Paper", "Work in progress" -->
+      <div class="paper-meta">with A. Kumar · <span class="status">R&amp;R, AEJ: Applied</span> · 2024</div>
+      <!-- UPDATE: abstract -->
+      <p class="paper-abstract">
+        We randomize whether firms are informed that their emissions are being tracked via satellite.
+        Treated firms reduce visible pollution by 18% but shift toward less detectable pollutants —
+        suggesting monitoring technologies create predictable evasion margins.
+      </p>
+      <!-- UPDATE: links. Remove links you don't have. -->
+      <div class="paper-links">
+        <a href="#">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          PDF
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Pre-registration
+        </a>
+      </div>
+    </div>
+
+    <div class="paper">
+      <div class="paper-title">
+        <a href="#">Groundwater Depletion and Agricultural Adaptation in the Indo-Gangetic Plain</a>
+      </div>
+      <div class="paper-meta">with B. Singh and C. Patel · Working Paper · 2023</div>
+      <p class="paper-abstract">
+        Combining GRACE satellite measurements with household panel data, we estimate the elasticity
+        of cropping decisions with respect to local water availability and find heterogeneous
+        adaptation by tenure status.
+      </p>
+      <div class="paper-links">
+        <a href="#">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          PDF
+        </a>
+      </div>
+    </div>
+
+    <div class="paper">
+      <div class="paper-title">
+        <a href="#">The Distributional Costs of Carbon Border Adjustments</a>
+      </div>
+      <div class="paper-meta">Work in progress · 2025</div>
+      <p class="paper-abstract">
+        A structural model of trade and emissions to evaluate the welfare incidence of CBAM-style
+        policies on low-income exporters.
+      </p>
+      <div class="paper-links">
+        <a href="#">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+          Slides
+        </a>
+      </div>
+    </div>
+
+    <!-- PAPERS END -->
+  </section>
+
+  <!-- Divider — small ripple (light mode) -->
+  <div class="divider divider-day" aria-hidden="true">
+    <svg viewBox="0 0 900 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="hill-1" d="M0,18 C200,8 400,22 600,12 C750,6 850,16 900,14 L900,30 L0,30Z" fill="#d8f3dc" opacity=".6"/>
+    </svg>
+  </div>
+  <!-- Divider — distant ridge (dark mode) -->
+  <div class="divider divider-night" aria-hidden="true">
+    <svg viewBox="0 0 900 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="peak-far" d="M0,22 L80,12 L160,20 L260,8 L350,18 L440,10 L530,20 L620,12 L710,22 L790,14 L900,18 L900,30 L0,30Z"/>
+      <path class="peak-mid" d="M0,26 L100,18 L200,24 L320,14 L420,22 L520,16 L630,24 L740,18 L840,24 L900,20 L900,30 L0,30Z"/>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       TEACHING — add/remove .course rows as needed
+       ============================================================ -->
+  <section id="teaching">
+    <h2 class="section-title">
+      <span class="icon-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </span>
+      Teaching
+    </h2>
+
+    <!-- TEACHING START -->
+    <div class="course">
+      <span class="course-name">Environmental Economics<span class="code">Econ 1661</span></span>
+      <span class="course-role">Teaching Fellow · Spring 2025</span>
+    </div>
+    <div class="course">
+      <span class="course-name">Econometrics<span class="code">Econ 1126</span></span>
+      <span class="course-role">Teaching Fellow · Fall 2024</span>
+    </div>
+    <div class="course">
+      <span class="course-name">Principles of Economics<span class="code">Ec 10</span></span>
+      <span class="course-role">Teaching Fellow · 2023 – 2024</span>
+    </div>
+    <!-- TEACHING END -->
+  </section>
+
+  <!-- Divider — tiny (light mode) -->
+  <div class="divider divider-day" aria-hidden="true">
+    <svg viewBox="0 0 900 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="hill-1" d="M0,14 C150,6 300,18 450,10 C600,4 750,14 900,10 L900,24 L0,24Z" fill="#d8f3dc" opacity=".5"/>
+    </svg>
+  </div>
+  <!-- Divider — thin ridge (dark mode) -->
+  <div class="divider divider-night" aria-hidden="true">
+    <svg viewBox="0 0 900 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="peak-far" d="M0,16 L100,8 L200,14 L320,4 L430,12 L540,6 L660,14 L780,8 L900,12 L900,24 L0,24Z"/>
+      <path class="peak-mid" d="M0,20 L120,14 L260,18 L400,10 L540,16 L680,12 L820,18 L900,14 L900,24 L0,24Z"/>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       EDUCATION — add/remove .timeline-item rows as needed.
+       The first item always gets the highlighted dot.
+       ============================================================ -->
+  <section id="education">
+    <h2 class="section-title">
+      <span class="icon-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
+      </span>
+      Education
+    </h2>
+
+    <!-- EDUCATION START -->
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <h4>PhD in Economics</h4>
+          <div class="where">[Your University] · Advisors: [Advisor 1], [Advisor 2]</div>
+          <div class="when">2021 — present</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <h4>MPhil in Economics</h4>
+          <div class="where">University of Oxford · Distinction</div>
+          <div class="when">2019 — 2021</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <h4>BA in Economics &amp; Mathematics</h4>
+          <div class="where">Swarthmore College · High Honors</div>
+          <div class="when">2015 — 2019</div>
+        </div>
+      </div>
+    </div>
+    <!-- EDUCATION END -->
+  </section>
+
+  <!-- ============================================================
+       CV — update the file path and date
+       ============================================================ -->
+  <!-- CV START -->
+  <section id="cv" class="cv-section">
+    <!-- UPDATE: replace files/cv.pdf with your actual CV file path -->
+    <a href="files/cv.pdf" class="cv-button" download>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download CV
+    </a>
+    <!-- UPDATE: update date when you upload a new CV -->
+    <div class="cv-meta">PDF · Updated November 2025</div>
+  </section>
+  <!-- CV END -->
+
+</main>
+
+<!-- ============================================================
+     FOOTER — update email and address
+     ============================================================ -->
+<footer>
+  <!-- UPDATE: replace your@email.edu -->
+  <div><a href="mailto:your@email.edu">your@email.edu</a></div>
+  <!-- UPDATE: your office address, or remove this line -->
+  <div class="footer-meta">[Building] · [Address] · [City, State ZIP]</div>
+</footer>
+
+<!-- Main script — loaded at end of body so DOM is ready -->
+<script src="js/theme-toggle.js"></script>
+
+</body>
+</html>
