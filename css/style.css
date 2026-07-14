@@ -383,6 +383,7 @@ html[data-theme="dark"] .theme-toggle .icon-sun  { display: block; }
 .divider-night svg .peak-near { fill: #1e1d1b; opacity: .95; }
 .divider-night svg .moon      { fill: #c8b878; opacity: .70; }
 .divider-night svg .moon-glow { fill: #c8b878; opacity: .15; }
+.divider-night svg .moon-ring { fill: none; stroke: #c8b878; stroke-width: .6; opacity: .3; }
 .divider-night svg .mist      { fill: #e0d8c0; opacity: .06; }
 
 /* ── Sections ── */

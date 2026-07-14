@@ -37,6 +37,10 @@
 
   function moonPath(p) {
     // p: 0–1 where 0 = new moon, 0.5 = full moon
+    // New moon is a degenerate case for the two-arc lune below: both arcs collapse
+    // to identical R,R semicircles swept in opposite directions, which some SVG
+    // renderers fill solid instead of canceling to nothing. Special-case it.
+    if (p < 0.02 || p >= 0.98) return '';
     var angle   = p * 2 * Math.PI;
     var cosA    = Math.cos(angle);
     var rx      = R * Math.abs(cosA);
