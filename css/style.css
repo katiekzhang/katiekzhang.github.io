@@ -30,9 +30,9 @@
 }
 
 html[data-theme="dark"] {
-  /* Night theme — Zhang Daqian, Panorama of Mount Lu (1981–83) */
-  --paper:       #1a3a4a;   /* deep azurite */
-  --paper-tint:  #16323f;
+  /* Night theme — warm charcoal with jade & gold accents */
+  --paper:       #1e1d1b;   /* dark charcoal */
+  --paper-tint:  #181715;
   --ink:         #e0d8c0;   /* mist cream */
   --ink-soft:    #cdc4a8;
   --muted:       #8a9a90;   /* fog grey-green */
@@ -79,9 +79,20 @@ html[data-theme="dark"] .timeline-item:first-child .timeline-dot {
 }
 html[data-theme="dark"] .timeline-dot { box-shadow: 0 0 0 3px var(--paper); }
 
-/* CV button */
+/* CV button (bottom, standalone) */
 html[data-theme="dark"] .cv-button       { background: var(--moss); color: #0d1410; box-shadow: 0 2px 10px rgba(0,0,0,.3); }
 html[data-theme="dark"] .cv-button:hover { background: var(--moss-deep); }
+
+/* CV button (hero social row) — stays icon-style, no fill, to match the other icons */
+html[data-theme="dark"] .social-row .cv-button {
+  background: none;
+  color: var(--muted);
+  box-shadow: none;
+}
+html[data-theme="dark"] .social-row .cv-button:hover {
+  background: var(--moss-paper);
+  color: var(--moss-mid);
+}
 
 /* Paper pill links */
 html[data-theme="dark"] .paper-links a:hover { color: var(--paper); }
@@ -89,7 +100,7 @@ html[data-theme="dark"] .paper-links a:hover { color: var(--paper); }
 /* Divider day-shape colours when rendered in dark */
 html[data-theme="dark"] .divider svg .hill-1 { fill: #2a6a5a; opacity: .55; }
 html[data-theme="dark"] .divider svg .hill-2 { fill: #1f4a44; opacity: .70; }
-html[data-theme="dark"] .divider svg .hill-3 { fill: #16323f; opacity: .90; }
+html[data-theme="dark"] .divider svg .hill-3 { fill: #181715; opacity: .90; }
 html[data-theme="dark"] .divider svg .sun    { fill: #c8b878; opacity: .55; }
 
 /* ── Base reset ── */
@@ -147,12 +158,12 @@ body {
   font-weight: 600;
   font-size: 1rem;
   letter-spacing: -.01em;
-  color: var(--ink);
+  color: var(--moss);
   text-decoration: none;
   padding: .4rem .5rem;
   flex-shrink: 0;
 }
-.nav-monogram em { color: var(--moss); font-style: normal; }
+.nav-monogram em { font-style: normal; }
 
 .nav-links {
   display: flex;
@@ -301,6 +312,20 @@ html[data-theme="dark"] .theme-toggle .icon-sun  { display: block; }
   text-decoration: none;
 }
 .social-row a:hover { color: var(--moss); background: var(--moss-paper); }
+.social-row .cv-button {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--muted);
+  border-radius: 6px;
+  width: auto;
+  height: 32px;
+  padding: 0 6px;
+  letter-spacing: normal;
+}
+.social-row .cv-button:hover { background: var(--moss-paper); color: var(--moss); transform: none; box-shadow: none; }
 .social-row svg {
   width: 16px; height: 16px;
   stroke: currentColor; stroke-width: 1.7;
@@ -355,7 +380,7 @@ html[data-theme="dark"] .theme-toggle .icon-sun  { display: block; }
 /* Shan shui mountain dividers — night mode only */
 .divider-night svg .peak-far  { fill: #3a8a6a; opacity: .22; }
 .divider-night svg .peak-mid  { fill: #2a6a5a; opacity: .50; }
-.divider-night svg .peak-near { fill: #1a3a4a; opacity: .95; }
+.divider-night svg .peak-near { fill: #1e1d1b; opacity: .95; }
 .divider-night svg .moon      { fill: #c8b878; opacity: .70; }
 .divider-night svg .moon-glow { fill: #c8b878; opacity: .15; }
 .divider-night svg .mist      { fill: #e0d8c0; opacity: .06; }
@@ -586,6 +611,49 @@ section {
   stroke: currentColor; stroke-width: 2;
   fill: none; stroke-linecap: round; stroke-linejoin: round;
 }
+
+/* ── Research sub-headings (Works in progress / Other publications) ── */
+.subsection-title {
+  font-family: 'Newsreader', serif;
+  font-weight: 600;
+  font-size: 1.12rem;
+  letter-spacing: -.012em;
+  color: var(--ink);
+  margin: 2.2rem 0 1.1rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .25em;
+}
+.section-title + .subsection-title { margin-top: 0; }
+/* The paper just before a sub-heading doesn't need its divider rule */
+.paper:has(+ .subsection-title) { border-bottom: none; }
+
+/* ── Collapsible abstract (click "Abstract" to expand) ── */
+.paper details.abstract summary {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--moss);
+  list-style: none;
+  user-select: none;
+  transition: color .2s;
+}
+.paper details.abstract summary::-webkit-details-marker { display: none; }
+.paper details.abstract summary::before {
+  content: '';
+  width: 0; height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 5px solid currentColor;
+  transition: transform .2s ease;
+}
+.paper details.abstract[open] summary::before { transform: rotate(90deg); }
+.paper details.abstract summary:hover { color: var(--moss-deep); }
+html[data-theme="dark"] .paper details.abstract summary:hover { color: var(--moss-mid); }
+.paper details.abstract .paper-abstract { margin-top: .4rem; }
 
 /* ── Teaching ── */
 .course {
