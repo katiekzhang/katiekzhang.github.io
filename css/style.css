@@ -571,6 +571,14 @@ section {
   letter-spacing: -.01em;
 }
 .paper-meta .status { color: var(--moss); font-weight: 500; }
+.paper-meta a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .15em;
+  text-decoration-color: var(--muted);
+}
+.paper-meta a:hover { text-decoration-color: currentColor; }
 
 .paper-abstract {
   font-size: .9rem;
